@@ -45,7 +45,7 @@
                 </span>
               </div>
           </div>
-          <button class="btn btn-bd-primary searchbutton" v-on:click.prevent="searchWords">Search</button>
+          <button class="btn btn-secondary" v-on:click.prevent="searchWords">Search</button>
       </form>
     </div>
 </template>

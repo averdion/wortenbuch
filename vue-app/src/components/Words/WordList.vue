@@ -1,5 +1,5 @@
 <template>
-  <div id="word-table">
+  <div id="word-list">
     <div v-if="words.length < 1" class="empty-table">
       <word-editor @save:word="saveWord"/>
       <word-search @search:words="searchWords"/>
@@ -12,10 +12,11 @@
       <word-editor  @save:word="saveWord" />
       <word-search @search:words="searchWords"/>
       <user-selector :users="users" @select:user="selectUser"/>
-
+      <div class="item-list">
       <template v-for="word in words">
-            <word-item v-bind:key="'word-' + word.wordId" :Word="word" @delete:word="raiseDelete" @save:word="saveWord"/>
+            <word-item v-bind:key="'word-' + word.wordId" :Word="word" @delete:word="deleteWord" @save:word="saveWord"/>
       </template>
+      </div>
       <pagination :pages="pages" @select:page="selectPage"/>
   </div>
   </div>
@@ -89,7 +90,7 @@
             this.$emit('search:words',this.searchData);
 
           },
-          raiseDelete(wordId){
+          deleteWord(wordId){
               this.$emit('delete:word', wordId);
           },
 

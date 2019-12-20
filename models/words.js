@@ -33,7 +33,7 @@ class Words extends customModel{
         if(userId>0)
             db.where('userId', userId)
         if(text!='')
-            db.andWhere('text', '%', text);
+            db.andWhere('text', 'like', '%'+text+'%');
         if(translate!='')
             db.andWhere('translate', '!=', translate);
         if(lang!='')

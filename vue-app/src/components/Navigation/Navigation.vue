@@ -7,10 +7,11 @@
               <router-link v-if="activeroute=='/login' || activeroute=='/'" to="/" class="nav-link active">Login</router-link>
               <router-link v-else to="/" class="nav-link">Login</router-link>
             </li>
-            <li class="nav-item">
+            <li v-if="logged" class="nav-item">
                   <router-link v-if="activeroute=='/words'" to="/words" class="nav-link active">Words</router-link>
                   <router-link v-else to="/words" class="nav-link">Words</router-link>
             </li>
+            <li v-else class="nav-item"><router-link to="/words" class="nav-link disabled">Words</router-link></li>
             <li v-if="permission" class="nav-item">
                   <router-link v-if="activeroute=='/users'" to="/users" class="nav-link active">Usuarios</router-link>
                   <router-link v-else to="/users" class="nav-link">Usuarios</router-link>
@@ -36,7 +37,7 @@
               return this.$store.state.LoggedUser.type == 4;
           },
           logged: function(){
-              return this.$store.state.LoggedUser.userId;
+              return this.$store.state.LoggedUser.userId>0;
           },
           activeroute(){
             return this.$route.path;

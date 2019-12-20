@@ -1,0 +1,24 @@
+.delete-icon{
+    padding-left: 4em;
+}
+.worditem{
+    padding:0.5em;
+    margin: 1.5em;
+    width: 8em;
+    height: 8em;
+    float: left;
+}
+
+.Nt{
+    background-color: #e8e8e8;
+}
+.Nm{
+    background-color: #aecee8;
+}
+.Nf{
+    background-color: #ffcefe
+}
+
+.item-list{
+    width: 30em;
+}

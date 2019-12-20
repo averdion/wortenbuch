@@ -51,7 +51,6 @@ router.get('/api/words/save', authentication.sessionChecker, function(req, res){
         api.saveWord(word, req.session.user)
 			    .then(response.send.bind(null,res)).done();
 	}catch(err){
-        console.log(err);
         res.header("Access-Control-Allow-Origin", "http://localhost:8080"); // update to match the domain you will make the request from
         res.header("Access-Control-Allow-Credentials", true);
     	res.status(403).json({ message: 'dates incorrect' });

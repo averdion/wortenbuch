@@ -64,7 +64,6 @@ export default {
       },
 
       async deleteWord(wordId) {
-        if(confirm('¿Seguro que quieres borrar esta entrada?')){
             try {
                 await fetch(this.$store.state.domain + '/api/words/delete?wordId=' + wordId, {
                 method: "GET",
@@ -74,7 +73,6 @@ export default {
             } catch (error) {
                 console.error(error);
             }
-        }
       },
       async getUsers() {
             try {

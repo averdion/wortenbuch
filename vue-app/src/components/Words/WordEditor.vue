@@ -40,10 +40,11 @@
                   <a href="#" id="Verb" v-on:click.prevent="markType('Verb')" class="badge badge-primary">Verb</a>
                   <a href="#" id="Conj" v-on:click.prevent="markType('Conj')" class="badge badge-primary">Conj</a>
                   <a href="#" id="Pron" v-on:click.prevent="markType('Pron')" class="badge badge-primary">Pron</a>
+                  <a href="#" id="PP" v-on:click.prevent="markType('PP')" class="badge badge-primary">PP</a>
                 </div>
             </div>
           </div>
-          <button class="btn btn-bd-primary" v-on:click.prevent="saveWord">Save</button>
+          <button class="btn btn-secondary" v-on:click.prevent="saveWord">Save</button>
       </form>
     </div>
   </div>
