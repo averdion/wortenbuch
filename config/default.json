@@ -1,0 +1,27 @@
+{
+  "serverConfig":{
+      "ip":"127.0.0.1",
+      "port":"8000",
+      "canonicalHost": "http://localhost:5000"
+  },
+  
+  "dbConfig": {
+      "client": "mysql",
+      "debug": true,
+      "connection": {
+          "host": "127.0.0.1",
+          "user": "wordlistuser",
+          "password": "password",
+          "database": "wordlist"
+      }
+  },
+  "auth":{
+      "cookie":{
+          "maxage": 86400000
+      },
+      "user_sid": "myusersid",
+      "secret": "D0M04R1G4T0",
+      "expires": 600000000,
+      "salt": 10
+  }
+}
