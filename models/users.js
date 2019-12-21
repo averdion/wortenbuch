@@ -18,12 +18,8 @@ class Users extends customModel{
         	var fieldstoupdate = {
                 name: user.name,
                 email: user.email,
-                imageurl: user.imageurl,
                 username: user.username,
-                type: user.type,
-                autologin: user.autologin,
-                extratime: user.extratime,
-                maxtime: user.maxtime
+                type: user.type
             }
             if(user.password!='@@nopassword@@')
                 fieldstoupdate['password'] = user.password;
@@ -41,10 +37,7 @@ class Users extends customModel{
                     imageurl: user.imageurl,
 	                username: user.username,
 	                password: user.password,
-	                type: user.type,
-                    autologin: user.autologin,
-                    extratime: user.extratime,
-                    maxtime: user.maxtime
+	                type: user.type
                         })
                 .into(this.tablename)
                 .then(function(rows){

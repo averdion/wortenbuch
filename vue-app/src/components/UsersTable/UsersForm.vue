@@ -30,24 +30,6 @@
             <input type="radio" id="admin" value="4" v-model="user.type">
             <label for="admin">Administrador</label>
         </div>
-        <div class="form-check">
-            <input type="checkbox" v-model="user.autologin" class="form-check-input" id="autologin">
-            <label class="form-check-label" for="autologin">Autologin</label>
-        </div>
-        <div><label>Jornada  Laboral (horas)</label></div>
-        <div class="col-sm-3 last-input">
-            <input
-              type="text" 
-              class="form-control"
-              v-model="user.maxtime"/>
-        </div>
-        <div><label>Ajuste horario (minutos)</label></div>
-        <div class="col-sm-3 last-input">
-            <input
-              type="text" 
-              class="form-control"
-              v-model="user.extratime"/>
-        </div>
 
         <div v-if="successmodified" class="alert alert-success">
         	✅ Usuario modificado correctamente.
@@ -57,8 +39,8 @@
           ✅ Usuario añadido correctamente.
           <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
         </div>
-        <div v-if="editing"><button class="btn btn-bd-primary">Guardar cambios</button><button class="btn btn-bd-primary" v-on:click.prevent="clearStatus()">Cancelar</button></div>
-        <button class="btn btn-bd-primary" v-else>Nuevo Usuario</button>
+        <div v-if="editing"><button class="btn btn-primary">Guardar cambios</button><button class="btn btn-primary" v-on:click.prevent="clearStatus()">Cancelar</button></div>
+        <button class="btn btn-primary" v-else>Nuevo Usuario</button>
     </div>
    </form>
 </template>

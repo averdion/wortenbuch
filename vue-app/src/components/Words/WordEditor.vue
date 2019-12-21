@@ -38,11 +38,18 @@
                   <a href="#" id="Nt" v-on:click.prevent="markType('Nt')" class="badge badge-primary">Nt</a>
                   <a href="#" id="Npl" v-on:click.prevent="markType('Npl')" class="badge badge-primary">Npl</a>
                   <a href="#" id="Verb" v-on:click.prevent="markType('Verb')" class="badge badge-primary">Verb</a>
-                  <a href="#" id="Conj" v-on:click.prevent="markType('Conj')" class="badge badge-primary">Conj</a>
+                  <a href="#" id="Conj" v-on:click.prevent="markType('Adv')" class="badge badge-primary">Adverb</a>
                   <a href="#" id="Pron" v-on:click.prevent="markType('Pron')" class="badge badge-primary">Pron</a>
                   <a href="#" id="PP" v-on:click.prevent="markType('PP')" class="badge badge-primary">PP</a>
                   <a href="#" id="PP" v-on:click.prevent="markType('Other')" class="badge badge-primary">Other</a>
                 </div>
+          <div class="input-group mb-3">
+              <label for="lang">Categories</label>
+              <div class="input-group-append searchcontrol">
+                    <input type="text" id="categories" ref="categories" v-model="saveData.categories" class="form-control form-control-m">
+              </div>
+          </div>
+
             </div>
           </div>
           <button class="btn btn-secondary" v-on:click.prevent="saveWord">Save</button>
@@ -62,6 +69,7 @@
                   translation: '',
                   lang: 'de',
                   type: 'Nm',
+                  categories: '',
                   userId: 0
               }
           }
@@ -79,14 +87,13 @@
               this.saveData.text = this.$refs['text'].value;
               this.saveData.translation = this.$refs['translation'].value;
               this.saveData.lang = this.$refs['lang'].value;
+              this.saveData.categories = this.$refs['categories'].value;
               this.$emit('save:word',this.saveData);
+              this.$refs['text'].value = '';
+              this.$refs['translation'].value = '';
+              this.$refs['lang'].value = '';
+              this.$refs['categories'].value = '';
           }
         }
     }
 </script>
-
-<style scoped>
-.badge{
-    margin-right: 0.2em;
-}
-</style>

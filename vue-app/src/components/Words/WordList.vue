@@ -58,6 +58,7 @@
                   userId: 0,
                   text: '',
                   type: '',
+                  categories: '',
                   lang: 'de',
                   wordsperpage: 30,
                   page: 0
@@ -67,6 +68,7 @@
                   text: '',
                   translation: '',
                   type: '',
+                  categories: '',
                   lang: 'de',
                   wordsperpage: 30,
                   page: 0
@@ -84,6 +86,7 @@
           searchWords(searchData){
             this.searchData.text = searchData.text;
             this.searchData.type = searchData.type;
+            this.searchData.categories = searchData.categories;
             this.searchData.lang = searchData.lang;
             this.searchData.wordsperpage = searchData.wordsperpage;
             this.searchData.page = searchData.page;
@@ -98,6 +101,7 @@
             this.saveData.text = saveData.text;
             this.saveData.translation = saveData.translation;
             this.saveData.type = saveData.type;
+            this.saveData.categories = saveData.categories;
             this.saveData.lang = saveData.lang;
             this.$emit('save:word', this.saveData);
           },

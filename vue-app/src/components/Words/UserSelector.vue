@@ -7,8 +7,8 @@
       <ul class="nav nav-pills">
         <li class="nav-item" v-for="user in users" :key="'userselector-' + user.userId">
             <span>
-                <button v-if="activeuser.userId==user.userId" href="#" class="nav-link btn btn-primary active" v-on:click="selectUser(user)">{{user.name}}</button>
-                <button v-else href="#" class="nav-link btn btn-primary" v-on:click="selectUser(user)">{{user.name}}</button>
+                <a v-if="activeuser.userId==user.userId" href="#" class="badge badge-secondary" v-on:click="selectUser(user)">{{user.name}}</a>
+                <a v-else href="#" class="badge badge-primary" v-on:click="selectUser(user)">{{user.name}}</a>
             </span>
         </li>
       </ul>

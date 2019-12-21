@@ -6,7 +6,7 @@ class Words extends customModel{
     	super('words');
     }
 
-    searchWords(userId, text, translate, lang, type, numwords, page){
+    searchWords(userId, text, translate, lang, type, categories, numwords, page){
         var db = this.db(this.tablename)
         if(userId>0)
             db.where('userId', userId)
@@ -16,6 +16,9 @@ class Words extends customModel{
             db.andWhere('translate', '!=', translate);
         if(lang!='')
             db.andWhere('lang', '=', lang);
+        if(categories!='')
+            db.andWhere('categories', 'like', '%' + categories + '%');
+
         if(type!=''){
             if(type=='nouns'){
                 db.andWhere('type', 'like', 'N%');
@@ -34,7 +37,7 @@ class Words extends customModel{
         return db.orderBy('text', 'DESC');
     }
 
-    countWords(userId, text, translate, lang, type){
+    countWords(userId, text, translate, lang, type, categories){
         var db = this.db(this.tablename)
         if(userId>0)
             db.where('userId', userId)
@@ -44,6 +47,8 @@ class Words extends customModel{
             db.andWhere('translate', '!=', translate);
         if(lang!='')
             db.andWhere('lang', '=', lang);
+        if(categories!='')
+            db.andWhere('categories', 'like', '%' + categories + '%');
         if(type!='')
             if(type=='nouns'){
                 db.andWhere('type', 'like', 'N%');
@@ -65,6 +70,7 @@ class Words extends customModel{
                         translation: word.translation,
                         lang: word.lang,
                         type: word.type,
+                        categories: word.categories,
                         userId: word.userId,
                         })
                 .then(function(rows){
@@ -77,6 +83,7 @@ class Words extends customModel{
                         translation: word.translation,
                         lang: word.lang,
                         type: word.type,
+                        categories: word.categories,
                         userId: word.userId,
                         })
                 .into(this.tablename)

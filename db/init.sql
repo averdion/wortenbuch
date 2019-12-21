@@ -36,8 +36,9 @@ CREATE TABLE `words` (
   `wordId` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(45) DEFAULT NULL,
   `translation` varchar(45) DEFAULT NULL,
-  `words` varchar(2) DEFAULT 'de',
+  `lang` varchar(2) DEFAULT 'de',
   `type` varchar(10) DEFAULT 'Nm',
+  `categories` varchar(255) DEFAULT NULL,
   `userId` int(11) DEFAULT NULL,
   PRIMARY KEY (`wordId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;

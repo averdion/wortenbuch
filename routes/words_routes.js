@@ -15,9 +15,10 @@ router.get('/api/words?', authentication.sessionChecker, function(req, res){
 	var translate = req.query.translate || '';
 	var lang = req.query.lang || '';
 	var type = req.query.type || '';
+	var categories = req.query.categories || '';
 	var numwords = req.query.numwords || 0;
 	var page = req.query.page || -1;
-    api.getWords(userId, text, translate, lang, type, numwords, page)
+    api.getWords(userId, text, translate, lang, type, categories, numwords, page)
 		.then(response.send.bind(null,res)).done();
 });
 
@@ -30,8 +31,9 @@ router.get('/api/words/countwords?', authentication.sessionChecker, function(req
 	var translate = req.query.translate || '';
 	var lang = req.query.lang || '';
 	var type = req.query.type || '';
+	var categories = req.query.categories || '';
 
-    api.countWords(userId, text, translate, lang, type)
+    api.countWords(userId, text, translate, lang, type, categories)
 		.then(response.send.bind(null,res)).done();
 });
 
@@ -45,6 +47,7 @@ router.get('/api/words/save', authentication.sessionChecker, function(req, res){
 		    text: req.query.text || '',
 		    translation: req.query.translation || '',
 		    type: req.query.type || '',
+		    categories: req.query.categories || '',
 		    lang: req.query.lang || 'de',
 		    userId: req.query.userId,
 		};

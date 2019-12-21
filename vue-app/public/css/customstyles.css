@@ -24,7 +24,7 @@
 .Verb{
     background-color: #b6d7a8;
 }
-.Conj{
+.Adv{
     background-color: #d8563b;
 }
 .Pron{
@@ -36,4 +36,10 @@
 
 .item-list{
     width: 30em;
+}
+.searchcontrol input:{
+    margin-right: 1em;
+}
+.badge{
+    margin-right: 0.2em;
 }
