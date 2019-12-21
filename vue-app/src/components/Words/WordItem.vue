@@ -1,6 +1,6 @@
 <template>
   <div :class="'worditem ' + word.type">
-    <span v-if="loggedId==word.userId"><a href="#" v-on:click.prevent="deleteWord(Word)"><i class="material-icons delete-icon">close</i></a></span>
+    <span v-if="loggedId==word.userId"><a href="#" v-on:click.prevent="deleteWord(Word)"><i class="delete-icon material-icons">close</i></a></span>
       <div><strong>{{word.text}}</strong> (<em>{{word.type}}</em>)</div>
       <div>{{word.translation}}</div>
       <div><em>{{word.categories}}</em></div>
