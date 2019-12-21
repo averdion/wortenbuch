@@ -29,7 +29,6 @@ class Api{
 
     getWords(userId, text, translate, lang, type, categories, numwords, page){
         var that = this;
-        console.log('categories: ' + categories);
         var words = new Words();
         return words.searchWords(userId, text, translate, lang, type, categories, numwords, page).then(function(wordlist) {
            return {
@@ -62,7 +61,6 @@ class Api{
 
         var words = new Words();
         return words.countWords(userId, text, translate, lang, type, categories).then(function(result) {
-            console.log(result);
            return {
                links: {
                     self: '/api/entries', 

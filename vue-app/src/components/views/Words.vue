@@ -67,11 +67,12 @@ export default {
 
       async deleteWord(wordId) {
             try {
-                await fetch(this.$store.state.domain + '/api/words/delete?wordId=' + wordId, {
+                const response = await fetch(this.$store.state.domain + '/api/words/delete?wordId=' + wordId, {
                 method: "GET",
                 credentials: 'include'
             });
-            this.getEntries(this.searchData);
+            if(response.status == 200)
+                this.getWords(this.searchData);
             } catch (error) {
                 console.error(error);
             }
@@ -116,7 +117,7 @@ export default {
           }
       },
       selectPage(searchData){
-        this.getEntries(searchData);
+        this.getWords(searchData);
       }
   }
 }

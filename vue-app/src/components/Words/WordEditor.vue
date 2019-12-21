@@ -38,7 +38,7 @@
                   <a href="#" id="Nt" v-on:click.prevent="markType('Nt')" class="badge badge-primary">Nt</a>
                   <a href="#" id="Npl" v-on:click.prevent="markType('Npl')" class="badge badge-primary">Npl</a>
                   <a href="#" id="Verb" v-on:click.prevent="markType('Verb')" class="badge badge-primary">Verb</a>
-                  <a href="#" id="Conj" v-on:click.prevent="markType('Adv')" class="badge badge-primary">Adverb</a>
+                  <a href="#" id="Adv" v-on:click.prevent="markType('Adv')" class="badge badge-primary">Adverb</a>
                   <a href="#" id="Pron" v-on:click.prevent="markType('Pron')" class="badge badge-primary">Pron</a>
                   <a href="#" id="PP" v-on:click.prevent="markType('PP')" class="badge badge-primary">PP</a>
                   <a href="#" id="PP" v-on:click.prevent="markType('Other')" class="badge badge-primary">Other</a>
