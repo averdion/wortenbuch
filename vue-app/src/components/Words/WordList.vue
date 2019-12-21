@@ -74,8 +74,14 @@
                   page: 0
               },
               pages: [],
-              loggeduser: this.$store.state.LoggedUser
+              loggeduser: this.$store.state.LoggedUser,
+              open: false
           }
+      },
+      updated() {
+    // Fired every second, should always be true
+          if(this.open)
+              $('#newword').collapse('show');
       },
       mounted(){
         this.searchData.userId = this.$store.state.LoggedUser.userId;
@@ -104,6 +110,7 @@
             this.saveData.categories = saveData.categories;
             this.saveData.lang = saveData.lang;
             this.$emit('save:word', this.saveData);
+            this.open = true;
           },
           selectUser(user){
               this.searchData.userId = user.userId;

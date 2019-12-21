@@ -1,6 +1,6 @@
 <template>
   <div>
-  <button class="btn btn-primary" data-toggle="collapse" href="#newword" aria-expanded="false" aria-controls="newword">
+  <button class="badge badge-primary" data-toggle="collapse" href="#newword" aria-expanded="false" aria-controls="newword">
     Add word
   </button>
   <div id="newword" class="collapse">

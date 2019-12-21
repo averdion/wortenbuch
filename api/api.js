@@ -90,7 +90,7 @@ class Api{
     saveWord(word, loggeduser){
         var words = new Words();
         var that = this;
-        return words.find({text: word.text, lang: word.lang}).then(function(wordlist) {
+        return words.find({userId: loggeduser.userId, text: word.text, lang: word.lang}).then(function(wordlist) {
             if(wordlist.length==0){
                 return words.save(word).then(function(words) {
                     var date = new Date();
