@@ -16,8 +16,14 @@ class Words extends customModel{
             db.andWhere('translate', '!=', translate);
         if(lang!='')
             db.andWhere('lang', '=', lang);
-        if(type!='')
-            db.andWhere('type', '=', type);
+        if(type!=''){
+            if(type=='nouns'){
+                db.andWhere('type', 'like', 'N%');
+
+            }else{
+                db.andWhere('type', '=', type);
+            }
+        }
         if(numwords>0){
             db.limit(numwords);
             if(page> -1){
@@ -39,7 +45,12 @@ class Words extends customModel{
         if(lang!='')
             db.andWhere('lang', '=', lang);
         if(type!='')
-            db.andWhere('type', '=', type);
+            if(type=='nouns'){
+                db.andWhere('type', 'like', 'N%');
+
+            }else{
+                db.andWhere('type', '=', type);
+            }
 
         return db.count('wordId', {as: 'numresults'});
     }

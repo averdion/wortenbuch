@@ -41,6 +41,7 @@
                   <a href="#" id="Conj" v-on:click.prevent="markType('Conj')" class="badge badge-primary">Conj</a>
                   <a href="#" id="Pron" v-on:click.prevent="markType('Pron')" class="badge badge-primary">Pron</a>
                   <a href="#" id="PP" v-on:click.prevent="markType('PP')" class="badge badge-primary">PP</a>
+                  <a href="#" id="PP" v-on:click.prevent="markType('Other')" class="badge badge-primary">Other</a>
                 </div>
             </div>
           </div>
