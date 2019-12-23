@@ -6,7 +6,7 @@ class Words extends customModel{
     	super('words');
     }
 
-    searchWords(userId, text, translate, lang, type, categories, numwords, page){
+    searchWords(userId, text, translate, lang, type, tags, numwords, page){
         var db = this.db(this.tablename)
         if(userId>0)
             db.where('userId', userId)
@@ -16,8 +16,8 @@ class Words extends customModel{
             db.andWhere('translate', '!=', translate);
         if(lang!='')
             db.andWhere('lang', '=', lang);
-        if(categories!='')
-            db.andWhere('categories', 'like', '%' + categories + '%');
+        if(tags!='')
+            db.andWhere('tags', 'like', '%' + tags + '%');
 
         if(type!=''){
             if(type=='nouns'){
@@ -37,7 +37,7 @@ class Words extends customModel{
         return db.orderBy('text', 'DESC');
     }
 
-    countWords(userId, text, translate, lang, type, categories){
+    countWords(userId, text, translate, lang, type, tags){
         var db = this.db(this.tablename)
         if(userId>0)
             db.where('userId', userId)
@@ -47,8 +47,8 @@ class Words extends customModel{
             db.andWhere('translate', '!=', translate);
         if(lang!='')
             db.andWhere('lang', '=', lang);
-        if(categories!='')
-            db.andWhere('categories', 'like', '%' + categories + '%');
+        if(tags!='')
+            db.andWhere('tags', 'like', '%' + tags + '%');
         if(type!='')
             if(type=='nouns'){
                 db.andWhere('type', 'like', 'N%');
@@ -70,7 +70,7 @@ class Words extends customModel{
                         translation: word.translation,
                         lang: word.lang,
                         type: word.type,
-                        categories: word.categories,
+                        tags: word.tags,
                         userId: word.userId,
                         })
                 .then(function(rows){
@@ -83,7 +83,7 @@ class Words extends customModel{
                         translation: word.translation,
                         lang: word.lang,
                         type: word.type,
-                        categories: word.categories,
+                        tags: word.tags,
                         userId: word.userId,
                         })
                 .into(this.tablename)

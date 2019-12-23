@@ -1,5 +1,6 @@
 var Users = require ('../models/users.js');
 var Words = require('../models/words.js');
+var Tags = require('../models/tags.js');
 var config = require('config');
 var rp = require('request-promise');
 var Response = require('../utils/response.js');
@@ -27,10 +28,10 @@ class Api{
             }
         }
 
-    getWords(userId, text, translate, lang, type, categories, numwords, page){
+    getWords(userId, text, translate, lang, type, tags, numwords, page){
         var that = this;
         var words = new Words();
-        return words.searchWords(userId, text, translate, lang, type, categories, numwords, page).then(function(wordlist) {
+        return words.searchWords(userId, text, translate, lang, type, tags, numwords, page).then(function(wordlist) {
            return {
                links: {
                     self: '/api/entries', 
@@ -47,7 +48,7 @@ class Api{
                             translation: word.translation,
                             lang: word.lang,
                             type: word.type,
-                            categories: word.categories,
+                            tags: word.tags,
                             userId: word.userId
                         };           
                     })
@@ -56,11 +57,11 @@ class Api{
         });
     }
 
-    countWords(userId, text, translate, lang, type, categories){
+    countWords(userId, text, translate, lang, type, tags){
         var that = this;
 
         var words = new Words();
-        return words.countWords(userId, text, translate, lang, type, categories).then(function(result) {
+        return words.countWords(userId, text, translate, lang, type, tags).then(function(result) {
            return {
                links: {
                     self: '/api/entries', 
@@ -111,7 +112,7 @@ class Api{
                             translation: word.translation,
                             lang: word.lang,
                             type: word.type,
-                            categories: word.categories,
+                            tags: word.tags,
                             userId: word.userId
                                 }         
                             })
@@ -125,14 +126,14 @@ class Api{
     getUsers(){
         var users = new Users();
         var that = this;
-        return users.getUsers().then(function(words) {
+        return users.getUsers().then(function(items) {
            return {
                links: {
                     self: '/api/users', 
                     curies: that.response.getCuries(),
                 },
                 embeds: {
-                   "rl:entries": words.map(function(user){
+                   "rl:entries": items.map(function(user){
                        return {
                             links: {
                                 self: '/api/users/' + user.userId 
@@ -142,11 +143,33 @@ class Api{
                             email: user.email,
                             imageurl: user.imageurl,
                             username: user.username,
-                            type: user.type,
-                            autologin: user.autologin,
-                            logged: user.logged,
-                            extratime: user.extratime,
-                            maxtime: user.maxtime
+                            type: user.type
+                        };           
+                    })
+                }
+            };
+        });
+    }
+
+    getTags(text, lang, userId, numtags, page){
+        var tags = new Tags();
+        var that = this;
+        return tags.searchTags(text, lang, userId, numtags, page).then(function(items) {
+           return {
+               links: {
+                    self: '/api/tags', 
+                    curies: that.response.getCuries(),
+                },
+                embeds: {
+                   "rl:entries": items.map(function(tag){
+                       return {
+                            links: {
+                                self: '/api/tags/' + tag.tagId 
+                            },
+                        tagId: tag.tagId,
+                        text: tag.text,
+                        lang: tag.lang,
+                        userId: tag.userId,
                         };           
                     })
                 }

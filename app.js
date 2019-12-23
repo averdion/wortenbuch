@@ -22,6 +22,7 @@ app.set('ipaddr', config.serverConfig.ip);
 
 var static_routes = require('./routes/static_routes.js');
 var words_routes = require('./routes/words_routes.js');
+var tags_routes = require('./routes/tags_routes.js');
 var users_routes = require('./routes/users_routes.js');
 var authentication_routes = require('./routes/authentication_routes.js');
 
@@ -40,6 +41,7 @@ app.use(session({
 app.use('/', express.static(path.join(__dirname, '/vue-app/dist')));
 app.use(static_routes);
 app.use(words_routes);
+app.use(tags_routes);
 app.use(users_routes);
 app.use(authentication_routes);
 

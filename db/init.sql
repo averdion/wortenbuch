@@ -38,7 +38,16 @@ CREATE TABLE `words` (
   `translation` varchar(45) DEFAULT NULL,
   `lang` varchar(2) DEFAULT 'de',
   `type` varchar(10) DEFAULT 'Nm',
-  `categories` varchar(255) DEFAULT NULL,
+  `tags` varchar(255) DEFAULT NULL,
   `userId` int(11) DEFAULT NULL,
   PRIMARY KEY (`wordId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `tags` (
+  `tagId` int(11) NOT NULL,
+  `text` varchar(45) DEFAULT NULL,
+  `lang` varchar(45) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`tagId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
