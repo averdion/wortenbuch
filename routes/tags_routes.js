@@ -8,7 +8,7 @@ var authentication = new Authentication();
 
 router.get('/api/tags?', authentication.sessionChecker, function(req, res){
 	var api = new Api();
-	var userId = '' //req.query.userId;
+	var userId = '';
 	if(!userId)
 		userId = '';
 	var text = req.query.text || '';

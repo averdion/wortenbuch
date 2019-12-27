@@ -28,7 +28,7 @@ export default {
         userId: 0,
         text: '',
         type: '',
-        categories: '',
+        tags: '',
         lang: '',
         wordsperpage: 30,
         page: 0
@@ -39,7 +39,7 @@ export default {
         text: '',
         translation: '',
         type: '',
-        categories: '',
+        tags: '',
         lang: ''
       }
 
@@ -51,7 +51,6 @@ export default {
     this.getWords(this.searchData);
     this.getUsers();
   },
-
   methods: {
 
       async saveWord(word) {
@@ -91,7 +90,7 @@ export default {
       },
       async getWords(searchData) {
           try {
-              const response = await fetch(this.$store.state.domain + '/api/words?userId='+ searchData.userId + '&text=' + searchData.text + '&type=' + searchData.type + '&categories=' + searchData.categories + '&lang=' + searchData.lang + '&numwords=' + searchData.wordsperpage + '&page=' + searchData.page,{
+              const response = await fetch(this.$store.state.domain + '/api/words?userId='+ searchData.userId + '&text=' + searchData.text + '&type=' + searchData.type + '&tags=' + searchData.tags + '&lang=' + searchData.lang + '&numwords=' + searchData.wordsperpage + '&page=' + searchData.page,{
                   method: 'GET',
                   credentials: 'include'
               })
@@ -105,7 +104,7 @@ export default {
       },
       async countWords(searchData) {
           try {
-              const response = await fetch(this.$store.state.domain + '/api/words/countwords?userId='+ searchData.userId + '&text=' + searchData.text + '&type=' + searchData.type + '&categories=' + searchData.categories + '&lang=' + searchData.lang,{
+              const response = await fetch(this.$store.state.domain + '/api/words/countwords?userId='+ searchData.userId + '&text=' + searchData.text + '&type=' + searchData.type + '&tags=' + searchData.tags + '&lang=' + searchData.lang,{
                   method: 'GET',
                   credentials: 'include'
               })

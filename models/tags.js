@@ -27,9 +27,8 @@ class Tags extends customModel{
 
     countTags(text, lang, userId){
         var db = this.db(this.tablename)
-        db.Where('tagId','>','0')
         if(text!='')
-            db.andWhere('text', 'like', '%' + text + '%');
+            db.where('text', '=', text);
         if(lang!='')
             db.andWhere('lang', '=', lang);
 

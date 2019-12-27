@@ -6,19 +6,19 @@
   <div id="newword" class="collapse">
       <form class="form-outline">
           <div class="input-group mb-3">
-              <label for="text">Word</label>
+              <label for="text">Word: </label>
               <div class="input-group-append searchcontrol">
-                  <input type="text" id="text" ref="text" v-model="saveData.text" />
+                  <input type="text" id="text" ref="text" class="form-control" v-model="saveData.text" />
             </div>
           </div>
           <div class="input-group mb-3">
-              <label for="translation">Translation</label>
+              <label for="translation">Translation: </label>
               <div class="input-group-append searchcontrol">
-                  <input type="text" id="translation" ref="translation" v-model="saveData.translation" />
+                  <input type="text" id="translation" class="form-control" ref="translation" v-model="saveData.translation" />
             </div>
           </div>
           <div class="input-group mb-3">
-              <label for="lang">Lang</label>
+              <label for="lang">Lang: </label>
               <div class="input-group-append searchcontrol">
                 <span id="viewnumber">
                     <select id="lang" ref="lang" v-model="saveData.lang" class="form-control form-control-sm">
@@ -44,9 +44,9 @@
                   <a href="#" id="PP" v-on:click.prevent="markType('Other')" class="badge badge-primary">Other</a>
                 </div>
           <div class="input-group mb-3">
-              <label for="lang">Categories</label>
+              <label for="lang">Tags: </label>
               <div class="input-group-append searchcontrol">
-                    <input type="text" id="categories" ref="categories" v-model="saveData.categories" class="form-control form-control-m">
+                    <input type="text" id="tags" ref="tags" v-model="saveData.tags" class="form-control">
               </div>
           </div>
 
@@ -69,9 +69,9 @@
                   translation: '',
                   lang: 'de',
                   type: 'Nm',
-                  categories: '',
+                  tags: '',
                   userId: 0
-              }
+              },
           }
         },
         methods:{
@@ -84,15 +84,30 @@
             $('#'+ type).addClass('badge-secondary');
           },
           saveWord(){
-              this.saveData.text = this.$refs['text'].value;
+
               this.saveData.translation = this.$refs['translation'].value;
               this.saveData.lang = this.$refs['lang'].value;
-              this.saveData.categories = this.$refs['categories'].value;
+              if(this.saveData.type == 'Nm' || this.saveData.type == 'Nf' || this.saveData.type == 'Npl')
+                  this.saveData.text = this.capitalize(this.$refs['text'].value);
+              else
+                  this.saveData.text = this.$refs['text'].value;
+
+              this.saveData.tags = this.formatTags(this.$refs['tags'].value);
               this.$emit('save:word',this.saveData);
               this.$refs['text'].value = '';
               this.$refs['translation'].value = '';
               this.$refs['lang'].value = '';
-              this.$refs['categories'].value = '';
+              this.$refs['tags'].value = '';
+          },
+          capitalize(strinput){
+            return strinput.trim().charAt(0).toUpperCase() + strinput.trim().slice(1);
+
+          },
+          formatTags(tags){
+            var taglist = tags.split(',');
+            return taglist.map(function(value, index, array){
+                return value.trim().charAt(0).toUpperCase() + value.trim().slice(1);
+            }).join(', ');
           }
         }
     }

@@ -1,16 +1,16 @@
 <template>
   <div id="word-list">
     <div v-if="words.length < 1" class="empty-table">
-      <word-editor @save:word="saveWord"/>
-      <word-search @search:words="searchWords"/>
+      <word-editor @save:word="saveWord" :tags="tags"/>
+      <word-search @search:words="searchWords" :tags="tags"/>
       <user-selector v-if="LoggedUser.type==4" :users="users" @select:user="selectUser"/>
       <p>
         Words not found
       </p>
     </div>
     <div v-else>
-      <word-editor  @save:word="saveWord" />
-      <word-search @search:words="searchWords"/>
+      <word-editor  @save:word="saveWord" :tags="tags" />
+      <word-search @search:words="searchWords" :tags="tags"/>
       <user-selector :users="users" @select:user="selectUser"/>
       <div class="item-list">
       <template v-for="word in words">
@@ -58,7 +58,7 @@
                   userId: 0,
                   text: '',
                   type: '',
-                  categories: '',
+                  tags: '',
                   lang: 'de',
                   wordsperpage: 30,
                   page: 0
@@ -68,14 +68,13 @@
                   text: '',
                   translation: '',
                   type: '',
-                  categories: '',
-                  lang: 'de',
-                  wordsperpage: 30,
-                  page: 0
+                  tags: '',
+                  lang: 'de'
               },
               pages: [],
               loggeduser: this.$store.state.LoggedUser,
-              open: false
+              open: false,
+              tags: []
           }
       },
       updated() {
@@ -86,13 +85,31 @@
       mounted(){
         this.searchData.userId = this.$store.state.LoggedUser.userId;
         this.saveData.userId = this.$store.state.LoggedUser.userId;
-
+        this.getTags();
       },
       methods: {
+          async getTags() {
+                try {
+                    const response = await fetch(this.$store.state.domain + '/api/tags',{
+                        method: 'GET',
+                        credentials: 'include'
+                    });
+                    if(response.status == 200){
+                        const data = await response.json()
+                        this.tags = data._embedded["rl:entries"].map(function(value, index, array){
+                            return value.text;
+                        });
+                        setAutocomplete('tags',this.tags);
+                    }
+                }catch (error) {
+                    console.error(error)
+                }
+          },
+
           searchWords(searchData){
             this.searchData.text = searchData.text;
             this.searchData.type = searchData.type;
-            this.searchData.categories = searchData.categories;
+            this.searchData.tags = searchData.tags;
             this.searchData.lang = searchData.lang;
             this.searchData.wordsperpage = searchData.wordsperpage;
             this.searchData.page = searchData.page;
@@ -107,7 +124,7 @@
             this.saveData.text = saveData.text;
             this.saveData.translation = saveData.translation;
             this.saveData.type = saveData.type;
-            this.saveData.categories = saveData.categories;
+            this.saveData.tags = saveData.tags;
             this.saveData.lang = saveData.lang;
             this.$emit('save:word', this.saveData);
             this.open = true;

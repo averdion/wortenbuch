@@ -94,8 +94,7 @@ class Api{
         return words.find({userId: loggeduser.userId, text: word.text, lang: word.lang}).then(function(wordlist) {
             if(wordlist.length==0){
                 return words.save(word).then(function(words) {
-                    var date = new Date();
-                    var action = ( word.wordId ? 'modified word' : 'added word');
+                    that.saveTags(word.tags, word.lang, word.userId);
                     return {
                        links: {
                             self: '/api/entries', 
@@ -121,6 +120,20 @@ class Api{
                 });
             }
         });
+    }
+
+    saveTags(strtags,lang, userId){
+        var tags = new Tags();
+        var that = this;
+        var taglist = strtags.split(',');
+            taglist.forEach(function(item, index){
+                tags.countTags(item.trim(), lang, userId).then(function(result){
+                    if(result[0]['numresults']==0)
+                        tags.save({text: item.trim(), lang: lang, userId: userId}).done();
+
+                });
+            });
+
     }
 
     getUsers(){

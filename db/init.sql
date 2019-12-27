@@ -45,9 +45,10 @@ CREATE TABLE `words` (
 
 
 CREATE TABLE `tags` (
-  `tagId` int(11) NOT NULL,
+  `tagId` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(45) DEFAULT NULL,
   `lang` varchar(45) DEFAULT NULL,
   `userId` int(11) DEFAULT NULL,
   PRIMARY KEY (`tagId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
