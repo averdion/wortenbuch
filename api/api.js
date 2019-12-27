@@ -31,7 +31,8 @@ class Api{
     getWords(userId, text, translate, lang, type, tags, numwords, page){
         var that = this;
         var words = new Words();
-        return words.searchWords(userId, text, translate, lang, type, tags, numwords, page).then(function(wordlist) {
+        var taglist = tags.split(',');
+        return words.searchWords(userId, text, translate, lang, type, taglist, numwords, page).then(function(wordlist) {
            return {
                links: {
                     self: '/api/entries', 
@@ -59,9 +60,9 @@ class Api{
 
     countWords(userId, text, translate, lang, type, tags){
         var that = this;
-
+        var taglist = tags.split(',');
         var words = new Words();
-        return words.countWords(userId, text, translate, lang, type, tags).then(function(result) {
+        return words.countWords(userId, text, translate, lang, type, taglist).then(function(result) {
            return {
                links: {
                     self: '/api/entries', 

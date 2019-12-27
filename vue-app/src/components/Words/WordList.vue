@@ -100,6 +100,7 @@
                             return value.text;
                         });
                         setAutocomplete('tags',this.tags);
+                        setAutocomplete('Stags',this.tags);
                     }
                 }catch (error) {
                     console.error(error)
@@ -128,6 +129,7 @@
             this.saveData.lang = saveData.lang;
             this.$emit('save:word', this.saveData);
             this.open = true;
+            this.getTags();
           },
           selectUser(user){
               this.searchData.userId = user.userId;

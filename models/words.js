@@ -16,8 +16,15 @@ class Words extends customModel{
             db.andWhere('translate', '!=', translate);
         if(lang!='')
             db.andWhere('lang', '=', lang);
-        if(tags!='')
-            db.andWhere('tags', 'like', '%' + tags + '%');
+        if(tags.length>0){
+            db.andWhere(function() {
+                for(var atag of tags){
+                    if(atag.trim()!='')
+                        this.orWhere('tags', 'like', '%' + atag.trim() + '%');
+
+                }
+            });
+        }
 
         if(type!=''){
             if(type=='nouns'){
@@ -47,8 +54,14 @@ class Words extends customModel{
             db.andWhere('translate', '!=', translate);
         if(lang!='')
             db.andWhere('lang', '=', lang);
-        if(tags!='')
-            db.andWhere('tags', 'like', '%' + tags + '%');
+        if(tags.length>0){
+            db.andWhere(function() {
+                for(var atag of tags){
+                    if(atag.trim()!='')
+                        this.orWhere('tags', 'like', '%' + atag.trim() + '%');
+                }
+            });
+        }
         if(type!='')
             if(type=='nouns'){
                 db.andWhere('type', 'like', 'N%');

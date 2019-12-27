@@ -38,9 +38,9 @@
               </div>
           </div>
           <div class="input-group mb-3">
-              <label for="categories">Categories: </label>
+              <label for="Stags">Tags: </label>
               <div class="input-group-append searchcontrol">
-                  <input type="text" id="Scategories" ref="categories" />
+                  <input type="text" id="Stags" ref="tags" />
             </div>
           </div>
           <button class="btn btn-secondary" v-on:click.prevent="searchWords">Search</button>
@@ -58,7 +58,7 @@
                   text: '',
                   lang: 'de',
                   type: '',
-                  categories: '',
+                  tags: '',
                   wordsperpage: 30,
                   page: 0
               }
@@ -69,7 +69,7 @@
           searchWords(){
               this.searchData.text = this.$refs['text'].value;
               this.searchData.type = this.$refs['type'].value;
-              this.searchData.categories = this.$refs['categories'].value;
+              this.searchData.tags = this.$refs['tags'].value;
               this.searchData.lang = this.$refs['lang'].value;
               this.searchData.page = 0;
               this.$emit('search:words',this.searchData);
