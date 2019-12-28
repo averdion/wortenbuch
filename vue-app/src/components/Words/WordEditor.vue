@@ -85,12 +85,14 @@
           },
           saveWord(){
 
-              this.saveData.translation = this.$refs['translation'].value;
               this.saveData.lang = this.$refs['lang'].value;
-              if(this.saveData.type == 'Nm' || this.saveData.type == 'Nf' || this.saveData.type == 'Npl')
+              if(this.saveData.type == 'Nm' || this.saveData.type == 'Nf' || this.saveData.type == 'Npl'){
                   this.saveData.text = this.capitalize(this.$refs['text'].value);
-              else
+                  this.saveData.translation = this.capitalize(this.$refs['translation'].value);
+              }else{
                   this.saveData.text = this.$refs['text'].value;
+                  this.saveData.translation = this.$refs['translation'].value;
+              }
 
               this.saveData.tags = this.formatTags(this.$refs['tags'].value);
               this.$emit('save:word',this.saveData);
@@ -104,10 +106,15 @@
 
           },
           formatTags(tags){
-            var taglist = tags.split(',');
-            return taglist.map(function(value, index, array){
-                return value.trim().charAt(0).toUpperCase() + value.trim().slice(1);
-            }).join(', ');
+            var taglist = tags.trim().split(',');
+            var strreturn = taglist.map(function(value, index, array){
+                if(value!='' && value!=' ')
+                    return ' ' + value.trim().charAt(0).toUpperCase() + value.trim().slice(1);
+            }).join(',');
+            if(strreturn[strreturn.length - 1] == ','){
+                strreturn = strreturn.slice(0,-1);
+            }
+            return strreturn;
           }
         }
     }

@@ -3,7 +3,7 @@
     <span v-if="loggedId==word.userId"><a href="#" v-on:click.prevent="deleteWord(Word)"><i class="delete-icon material-icons">close</i></a></span>
       <div><strong>{{word.text}}</strong> (<em>{{word.type}}</em>)</div>
       <div>{{word.translation}}</div>
-      <div><em>{{word.categories}}</em></div>
+      <div><em>{{word.tags}}</em></div>
   </div>
 </template>
 
