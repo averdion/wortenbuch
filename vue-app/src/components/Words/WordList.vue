@@ -3,7 +3,7 @@
     <div v-if="words.length < 1" class="empty-table">
       <word-editor @save:word="saveWord" :tags="tags"/>
       <word-search @search:words="searchWords" :tags="tags"/>
-      <user-selector v-if="LoggedUser.type==4" :users="users" @select:user="selectUser"/>
+      <user-selector :users="users" @select:user="selectUser"/>
       <p>
         Words not found
       </p>

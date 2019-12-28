@@ -1,5 +1,5 @@
 <template>
-  <div id="user-list" v-if="permission">
+  <div id="user-list">
     <p v-if="users.length < 1" class="empty-list">
     loading...
     </p>
@@ -7,8 +7,8 @@
       <ul class="nav nav-pills">
         <li class="nav-item" v-for="user in users" :key="'userselector-' + user.userId">
             <span>
-                <a v-if="activeuser.userId==user.userId" href="#" class="badge badge-secondary" v-on:click="selectUser(user)">{{user.name}}</a>
-                <a v-else href="#" class="badge badge-primary" v-on:click="selectUser(user)">{{user.name}}</a>
+                <a v-if="activeuser.userId==user.userId" href="#" :id="'user-'+ user.userId" class="users badge badge-secondary" v-on:click.prevent="selectUser(user)">{{user.name}}</a>
+                <a v-else href="#" class="users badge badge-primary" :id="'user-'+ user.userId" v-on:click.prevent="selectUser(user)">{{user.name}}</a>
             </span>
         </li>
       </ul>
@@ -28,16 +28,15 @@
     }
   },
   methods: {
-      selectUser(user, id){
-         this.$emit('select:user',user);
-         this.activeuser = user;
+      selectUser(user){
+          this.activeuser = user;
+          this.$emit('select:user',user);
+          $('.users').removeClass('badge-secondary');
+          $('.users').addClass('badge-primary')
+          $('#user-'+ user.userId).removeClass('badge-primary');
+          $('#user-'+ user.userId).addClass('badge-secondary');
       },
-  },
-      computed: {
-          permission: function(){
-              return this.$store.state.LoggedUser.type == 4;
-          }
-      }
+  }
 }
 </script>
 

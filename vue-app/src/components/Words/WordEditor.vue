@@ -41,7 +41,7 @@
                   <a href="#" id="Adv" v-on:click.prevent="markType('Adv')" class="badge badge-primary">Adverb</a>
                   <a href="#" id="Pron" v-on:click.prevent="markType('Pron')" class="badge badge-primary">Pron</a>
                   <a href="#" id="PP" v-on:click.prevent="markType('PP')" class="badge badge-primary">PP</a>
-                  <a href="#" id="PP" v-on:click.prevent="markType('Other')" class="badge badge-primary">Other</a>
+                  <a href="#" id="Other" v-on:click.prevent="markType('Other')" class="badge badge-primary">Other</a>
                 </div>
           <div class="input-group mb-3">
               <label for="lang">Tags: </label>
