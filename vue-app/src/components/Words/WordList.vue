@@ -1,7 +1,7 @@
 <template>
   <div id="word-list">
     <div v-if="words.length < 1" class="empty-table">
-      <word-editor @save:word="saveWord" :tags="tags"/>
+      <word-editor v-if="LoggedUser.type>0" @save:word="saveWord" :tags="tags"/>
       <word-search @search:words="searchWords" :tags="tags"/>
       <user-selector :users="users" @select:user="selectUser"/>
       <p>
@@ -9,7 +9,7 @@
       </p>
     </div>
     <div v-else>
-      <word-editor  @save:word="saveWord" :tags="tags" />
+      <word-editor v-if="LoggedUser.type>0" @save:word="saveWord" :tags="tags" />
       <word-search @search:words="searchWords" :tags="tags"/>
       <user-selector :users="users" @select:user="selectUser"/>
       <div class="item-list">

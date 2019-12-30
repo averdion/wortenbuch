@@ -24,7 +24,7 @@
               v-model="user.email"/>
         </div>
         <div>
-            <input type="radio" id="user" value="0" v-model="user.type">
+            <input type="radio" id="user" value="1" v-model="user.type">
             <label for="user">usuario</label>
             <br>
             <input type="radio" id="admin" value="4" v-model="user.type">
