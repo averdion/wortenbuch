@@ -29,6 +29,7 @@
                         <option value="verb">Verbs</option>
                         <option value="PP">Prepositions</option>
                         <option value="Adv">Adverb</option>
+                        <option value="Adj">Adjektiv</option>
                         <option value="PP">Prepositions</option>
                         <option value="Pron">Pronouns</option>
                         <option value="Other">Others</option>
