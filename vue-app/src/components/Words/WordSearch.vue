@@ -32,6 +32,7 @@
                         <option value="Adj">Adjektiv</option>
                         <option value="PP">Prepositions</option>
                         <option value="Pron">Pronouns</option>
+                        <option value="Konj">Konjunktion</option>
                         <option value="Other">Others</option>
                         <option value="">all</option>
                     </select>
