@@ -1,9 +1,9 @@
 <template>
   <div :class="'worditem ' + word.type">
     <span v-if="loggedId==word.userId"><a href="#" v-on:click.prevent="deleteWord(Word)"><i class="delete-icon material-icons">close</i></a></span>
-      <div><strong>{{word.text}}</strong> (<em>{{word.type}}</em>)</div>
+      <div><strong>{{word.text}}</strong> <em><a href="#" class="searchlink" v-on:click.prevent="selectType(word.type)">({{word.type}})</a></em></div>
       <div>{{word.translation}}</div>
-      <div>Tags: <em v-for="tag in tagList"><a href="#" class="taglink" v-on:click.prevent="selectTag(tag)">{{tag}}</a></em></div>
+      <div>Tags: <em v-for="tag in tagList"><a href="#" class="searchlink" v-on:click.prevent="selectTag(tag)">{{tag}}</a></em></div>
   </div>
 </template>
 
@@ -34,6 +34,9 @@
           },
           selectTag(tag){
             $('#Stags').val(tag);
+          },
+          selectType(type){
+            $('#Stype').val(type);
           }
         },
         computed:{
