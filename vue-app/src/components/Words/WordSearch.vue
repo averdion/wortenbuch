@@ -26,7 +26,7 @@
                 <span id="viewnumber">
                     <select id="Stype" ref="type" v-model="searchData.type" class="form-control form-control-sm">
                         <option selected="selected" value="nouns">Nouns</option>
-                        <option value="verb">Verbs</option>
+                        <option value="Verb">Verbs</option>
                         <option value="PP">Prepositions</option>
                         <option value="Adv">Adverb</option>
                         <option value="Adj">Adjektiv</option>
