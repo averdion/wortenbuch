@@ -36,6 +36,8 @@
             $('#Stags').val(tag);
           },
           selectType(type){
+            if(type=='Nm' || type=='Nf' || type=='Nt' || type=='Npl')
+              type = 'nouns'
             $('#Stype').val(type);
           }
         },
