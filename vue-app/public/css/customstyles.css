@@ -52,6 +52,7 @@ label:{
 .taglink{
     color: #000;
     text-decoration: none;
+    margin-right: 0.5em;
 }
 .taglink:hover{
     color: #000;
