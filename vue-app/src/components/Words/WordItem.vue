@@ -3,7 +3,7 @@
     <span v-if="loggedId==word.userId"><a href="#" v-on:click.prevent="deleteWord(Word)"><i class="delete-icon material-icons">close</i></a></span>
       <div><strong>{{word.text}}</strong> (<em>{{word.type}}</em>)</div>
       <div>{{word.translation}}</div>
-      <div><em>{{word.tags}}</em></div>
+      <div><em v-for="tag in tagList"><a href="#" class="taglink" v-on:click.prevent="selectTag(tag)">{{tag}}</a> </em></div>
   </div>
 </template>
 
@@ -31,11 +31,17 @@
           deleteWord(word) {
               if(confirm('are you sure you want to delete "' + word.text + '"?'))
                   this.$emit('delete:word', word.wordId);
+          },
+          selectTag(tag){
+            $('#Stags').val(tag);
           }
         },
         computed:{
           loggedId: function(){
               return this.$store.state.LoggedUser.userId;
+          },
+          tagList: function(){
+            return this.Word.tags.replace(' ', '').split(',');
           }
         }
     }
